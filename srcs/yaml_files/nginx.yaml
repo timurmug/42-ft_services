@@ -18,7 +18,8 @@ spec:
   template:
     metadata:
       labels: 
-        app: nginx
+        app  : nginx
+        owner: qtamaril
     spec:
       # ...based on image
       containers: 

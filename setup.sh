@@ -21,6 +21,7 @@ underline="\e[4m"
 
 printf "${green_bold}Starting minikube and creating cluster on virtualbox${default}"
 minikube start --vm-driver=virtualbox
+ssh-keygen -f "/Users/qtamaril/.ssh/known_hosts" -R 192.168.99.101 
 eval $(minikube docker-env)
 
 minikube addons enable metallb

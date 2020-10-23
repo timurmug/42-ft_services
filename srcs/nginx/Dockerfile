@@ -15,7 +15,11 @@ FROM alpine:latest
 RUN apk update
 
 # install
-RUN apk add --no-cache nginx openssl openrc supervisor openssh
+RUN apk add nginx openssl supervisor openssh
+
+# create ssh user
+RUN ssh-keygen -A
+RUN adduser -D qtamaril && echo "qtamaril:qtamaril" | chpasswd 
 
 # create user and group 'www' for nginx
 RUN adduser -D -g 'www' www
@@ -26,11 +30,9 @@ RUN mkdir /www && \
     chown -R www:www /www && \
     mkdir /run/nginx
 
-# copy supervisord config
+# copy supervisord, nginx configs and index page
 COPY srcs/supervisord.conf /etc/supervisord.conf
-# copy nginx config
 COPY srcs/server.conf /etc/nginx/conf.d/default.conf
-# copy index page
 COPY srcs/index.html /var/www/index.html
 
 # create own ssl key
@@ -44,6 +46,7 @@ RUN mkdir /etc/nginx/ssl \
 -subj "/C=RU/ST=Tatarstan/L=KAZAN/O=SCHOOL21/OU=QTAMARIL/CN=localhost"
 
 # set listening ports
-EXPOSE	80 443 22
+EXPOSE	22 80 443
 
-CMD ["/usr/bin/supervisord"]
+# start supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
