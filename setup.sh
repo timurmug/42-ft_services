@@ -12,7 +12,8 @@
 
 #!/bin/sh
 
-services=("nginx")
+services=("nginx" "phpmyadmin")
+# services=("mysql")
 green_bold="\n\t\t\e[92m\e[1m"
 yellow="\e[93m"
 default="\e[39m\e[0m\n"
@@ -20,8 +21,10 @@ blue="\e[24m: \e[96m"
 underline="\e[4m"
 
 printf "${green_bold}Starting minikube and creating cluster on virtualbox${default}"
+# minikube delete
+# minikube update-context
 minikube start --vm-driver=virtualbox
-ssh-keygen -f "/Users/qtamaril/.ssh/known_hosts" -R 192.168.99.101 
+ssh-keygen -f "/Users/qtamaril/.ssh/known_hosts" -R 192.168.99.101
 eval $(minikube docker-env)
 
 minikube addons enable metallb
@@ -34,17 +37,14 @@ docker build -t "${service}" srcs/${service}
 printf "${yellow}${service} image builded!${default}"
 done
 
-printf "${green_bold}Creating a Volume for storage...${default}"
-printf "${yellow}"
-kubectl apply -f srcs/yaml_files/volume.yaml
-printf "${default}"
+printf "${green_bold}Creating a volumes for storage...${default}${yellow}"
+kubectl apply -f srcs/yaml_files/volumes.yaml
 
-printf "${green_bold}Creating pods based on images with yaml files...${default}"
-printf "${yellow}"
+printf "${default}${green_bold}Creating pods based on images with yaml files...${default}${yellow}"
 for service in "${services[@]}"
 do
 kubectl apply -f srcs/yaml_files/${service}.yaml
 done
-printf "${default}"
 
-printf "${underline}Ip address nginx${blue}192.168.99.101:443${default}"
+printf "${default}${underline}Ip address nginx${blue}192.168.99.101:443${default}"
+printf "${underline}Ip address phpmyadmin${blue}192.168.99.102:5000${default}"

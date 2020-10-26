@@ -1,0 +1,72 @@
+# PersistentVolumeClaim is a request for storage by a user
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  # PersistentVolume name
+  storageClassName: mysql-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+# set deploy name and labels
+metadata:
+  name: mysql
+  labels:
+    app  : mysql
+    owner: qtamaril
+spec:
+  # with which pods will be work deploy
+  selector:
+    matchLabels:
+       app: mysql
+  # before starting new pods, all old ones will be deleted
+  strategy:
+    type: Recreate
+  # create pods...
+  template:
+    metadata:
+      labels: 
+        app  : mysql
+        owner: qtamaril
+    spec:
+      # ...based on image
+      containers:
+      - name           : mysql
+        image          : mysql
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3306
+        # with which tom will be work image
+        volumeMounts:
+        - name     : mysql-storage
+          mountPath: /var/lib
+      # create tom...
+      volumes:
+      - name: mysql-storage
+        # ...based on PersistentVolumeClaim
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+---
+apiVersion: v1
+kind: Service
+# set service name and labels
+metadata:
+  name: mysql-svc
+  labels:
+    app  : mysql-svc
+    owner: qtamaril
+spec:
+  type: ClusterIP
+  # with which pods will be work service
+  selector:
+    app: mysql
+  ports:
+  - protocol  : TCP
+    port      : 3306
+    targetPort: 3306
