@@ -12,8 +12,7 @@
 
 #!/bin/sh
 
-services=("nginx" "phpmyadmin")
-# services=("mysql")
+services=("nginx" "phpmyadmin" "mysql" "wordpress")
 green_bold="\n\t\t\e[92m\e[1m"
 yellow="\e[93m"
 default="\e[39m\e[0m\n"
@@ -48,3 +47,5 @@ done
 
 printf "${default}${underline}Ip address nginx${blue}192.168.99.101:443${default}"
 printf "${underline}Ip address phpmyadmin${blue}192.168.99.102:5000${default}"
+printf "${underline}Mysql hostname${blue}mysql-svc:3306${default}"
+printf "${underline}Ip address wordpress${blue}192.168.99.103:5050${default}"

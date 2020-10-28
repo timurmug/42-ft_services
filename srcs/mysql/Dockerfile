@@ -19,8 +19,9 @@ RUN         apk add --no-cache  mysql \
                                 mysql-client \
                                 openrc
 
-# copy configs and script
-COPY        src/my.cnf /etc/mysql/my.cnf
+# copy config, database and script
+COPY        srcs/my.cnf /etc/mysql/my.cnf
+COPY	    srcs/wordpress.sql	./wordpress.sql
 COPY        srcs/start.sh ./start.sh
 
 # create a mount point to work with persistent storage
@@ -30,4 +31,5 @@ VOLUME      ["/var/lib"]
 EXPOSE      3306
 
 # set starting script
+RUN         chmod 777 ./start.sh
 ENTRYPOINT  ./start.sh
