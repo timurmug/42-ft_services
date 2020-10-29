@@ -44,7 +44,7 @@ spec:
   selector:
     app: wordpress
   ports:
-    - name      : port-http
+    - name      : port-wordpress
       protocol  : TCP
       port      : 5050 # port on LoadBalancer
       targetPort: 5050 # port on pod

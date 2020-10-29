@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 # set deploy name and labels
 metadata:
-  name: phpmyadmin
+  name: ftps
   labels:
-    app  : phpmyadmin
+    app  : ftps
     owner: qtamaril
 spec:
   # with which pods will be work deploy
   selector:
     matchLabels:
-       app: phpmyadmin
+       app: ftps
   # before starting new pods, all old ones will be deleted
   strategy:
     type: Recreate
@@ -18,33 +18,38 @@ spec:
   template:
     metadata:
       labels: 
-        app  : phpmyadmin
+        app  : ftps
         owner: qtamaril
     spec:
       # ...based on image
       containers: 
-      - name           : phpmyadmin
-        image          : phpmyadmin
+      - name           : ftps
+        image          : ftps
         imagePullPolicy: Never
         ports:
-        - containerPort: 5000
+        - containerPort: 21
+        - containerPort: 10100
 ---
 apiVersion: v1
 kind: Service
 # set service name and labels
 metadata:
-  name: phpmyadmin-svc
+  name: ftps-svc
   labels:
-    app  : phpmyadmin-svc
+    app  : ftps-svc
     owner: qtamaril
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.99.102
+  loadBalancerIP: 192.168.99.104
   # with which pods will be work service
   selector:
-    app: phpmyadmin
+    app: ftps
   ports:
-    - name      : port-phpmyadmin
+    - name      : port-ftps-1
       protocol  : TCP
-      port      : 5000 # port on LoadBalancer
-      targetPort: 5000 # port on pod
+      port      : 21 # port on LoadBalancer
+      targetPort: 21 # port on pod
+    - name      : port-ftps-2
+      protocol  : TCP
+      port      : 10100 # port on LoadBalancer
+      targetPort: 10100 # port on pod

@@ -12,7 +12,7 @@
 
 #!/bin/sh
 
-services=("nginx" "phpmyadmin" "mysql" "wordpress")
+services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps")
 green_bold="\n\t\t\e[92m\e[1m"
 yellow="\e[93m"
 default="\e[39m\e[0m\n"
@@ -45,7 +45,8 @@ do
 kubectl apply -f srcs/yaml_files/${service}.yaml
 done
 
-printf "${default}${underline}Ip address nginx${blue}192.168.99.101:443${default}"
-printf "${underline}Ip address phpmyadmin${blue}192.168.99.102:5000${default}"
-printf "${underline}Mysql hostname${blue}mysql-svc:3306${default}"
-printf "${underline}Ip address wordpress${blue}192.168.99.103:5050${default}"
+printf "${default}Ip address nginx${blue}192.168.99.101:443${default}"
+printf "Ip address phpmyadmin${blue}192.168.99.102:5000${default}"
+printf "Mysql hostname${blue}mysql-svc:3306${default}"
+printf "Ip address wordpress${blue}192.168.99.103:5050${default}"
+printf "Ip address ftps${blue}192.168.99.104:21${default}"

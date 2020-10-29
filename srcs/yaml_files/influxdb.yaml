@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: influxdb-pv-claim
 spec:
   # PersistentVolume name
-  storageClassName: mysql-volume
+  storageClassName: influxdb-volume
   accessModes:
     - ReadWriteOnce
   resources:
@@ -16,15 +16,15 @@ apiVersion: apps/v1
 kind: Deployment
 # set deploy name and labels
 metadata:
-  name: mysql
+  name: influxdb
   labels:
-    app  : mysql
+    app  : influxdb
     owner: qtamaril
 spec:
   # with which pods will be work deploy
   selector:
     matchLabels:
-       app: mysql
+       app: influxdb
   # before starting new pods, all old ones will be deleted
   strategy:
     type: Recreate
@@ -32,42 +32,42 @@ spec:
   template:
     metadata:
       labels: 
-        app  : mysql
+        app  : influxdb
         owner: qtamaril
     spec:
       # ...based on image
       containers:
-      - name           : mysql
-        image          : mysql
+      - name           : influxdb
+        image          : influxdb
         imagePullPolicy: Never
         ports:
-        - containerPort: 3306
+        - containerPort: 8086
         # with which tom will be work image
         volumeMounts:
-        - name     : mysql-storage
+        - name     : influxdb-storage
           mountPath: /var/lib
       # create tom...
       volumes:
-      - name: mysql-storage
+      - name: influxdb-storage
         # ...based on PersistentVolumeClaim
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: influxdb-pv-claim
 ---
 apiVersion: v1
 kind: Service
 # set service name and labels
 metadata:
-  name: mysql-svc
+  name: influxdb-svc
   labels:
-    app  : mysql-svc
+    app  : influxdb-svc
     owner: qtamaril
 spec:
   type: ClusterIP
   # with which pods will be work service
   selector:
-    app: mysql
+    app: influxdb
   ports:
-  - name      : port-mysql
+  - name      : port-influxdb
     protocol  : TCP
-    port      : 3306
-    targetPort: 3306
+    port      : 8086
+    targetPort: 8086
