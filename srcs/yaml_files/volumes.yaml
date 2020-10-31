@@ -17,11 +17,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: influx-volume
+  name: influxdb-volume
   labels:
     type: local
 spec:
-  storageClassName: influx-volume
+  storageClassName: influxdb-volume
   capacity:
     storage: 1Gi
   accessModes:

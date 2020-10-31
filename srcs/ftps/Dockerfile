@@ -16,8 +16,8 @@ RUN         apk update
 
 # install
 RUN         apk add --no-cache  vsftpd \
-                            openssl \
-                            openrc
+                                openssl \
+                                openrc
 
 # set password for root
 RUN		    echo 'root:root' | chpasswd

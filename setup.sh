@@ -12,7 +12,7 @@
 
 #!/bin/sh
 
-services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps")
+services=("nginx" "phpmyadmin" "mysql" "wordpress" "ftps" "grafana" "influxdb")
 green_bold="\n\t\t\e[92m\e[1m"
 yellow="\e[93m"
 default="\e[39m\e[0m\n"
@@ -50,3 +50,5 @@ printf "Ip address phpmyadmin${blue}192.168.99.102:5000${default}"
 printf "Mysql hostname${blue}mysql-svc:3306${default}"
 printf "Ip address wordpress${blue}192.168.99.103:5050${default}"
 printf "Ip address ftps${blue}192.168.99.104:21${default}"
+printf "Ip address grafana${blue}192.168.99.105:3000${default}"
+printf "Influxdb hostname${blue}http://influxdb-svc:8086${default}"

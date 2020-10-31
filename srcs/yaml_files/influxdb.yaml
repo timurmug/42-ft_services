@@ -42,16 +42,22 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8086
-        # with which tom will be work image
+        # with which toms will be work image
         volumeMounts:
         - name     : influxdb-storage
           mountPath: /var/lib
-      # create tom...
+        - name     : dockersock
+          mountPath: /var/run/docker.sock
+      # create toms...
       volumes:
       - name: influxdb-storage
         # ...based on PersistentVolumeClaim
         persistentVolumeClaim:
           claimName: influxdb-pv-claim
+        # ...based on docker sock
+      - name: dockersock
+        hostPath:
+            path: /var/run/docker.sock
 ---
 apiVersion: v1
 kind: Service
