@@ -1,5 +1,5 @@
 # ft_services
-System Administration and Networking 42 project
+#### System Administration and Networking 42 project
 
 It was necessary to deploy a Kubernetes cluster with 7 independent services, each in its own pod. External access only through Load Balancer. Access is open only to nginx, phpmyadmin, wordpress, ftps, grafana.
 
