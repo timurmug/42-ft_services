@@ -7,6 +7,7 @@ If the process in the container or the container crashes, pod will restart itsel
 
 The entire assembly process is carried out in setup.sh
 
+</br>
 
 ## Minikube usage
 
@@ -27,6 +28,7 @@ Minikube is a tool for running a single-node Kubernetes cluster in a virtual mac
 | see pod/svc/deploy info | kubectl describe pod/svc/deploy "name" |
 | kill process "nginx" on "nginxpod" | kubectl exec "nginxpod" -- pkill nginx |
 
+</br>
 
 ## Useful links
 
