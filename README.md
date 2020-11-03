@@ -36,9 +36,15 @@ Minikube is a tool for running a single-node Kubernetes cluster in a virtual mac
 | --- | --- |
 | Dockerfile | https://habr.com/ru/company/ruvds/blog/439980/ |
 | Alpine | https://wiki.alpinelinux.org/wiki/Tutorials_and_Howtos |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| Kubernetes | https://kubernetes.io/docs/home/ |
+| Minikube | https://minikube.sigs.k8s.io/docs/start/ https://kubernetes.io/ru/docs/tutorials/hello-minikube/ |
+| Metallb | https://metallb.universe.tf/ |
+| k8s objects | https://kubernetes.io/ru/docs/concepts/overview/working-with-objects/kubernetes-objects/ |
+| Nodes | https://kubernetes.io/ru/docs/tutorials/kubernetes-basics/explore/explore-intro/ |
+| Pods | https://kubernetes.io/docs/concepts/workloads/pods/ |
+| Deployments | https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ |
+| Services | https://kubernetes.io/docs/concepts/services-networking/service/ |
+| Load Balancer | https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/ |
+| PersistentVolume | https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/#create-a-persistentvolume |
+| PersistentVolumeClaim | https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/#create-a-persistentvolumeclaim |
+| Deploying WordPress and MySQL with Persistent Volumes | https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/ |
