@@ -15,18 +15,18 @@ Minikube is a tool for running a single-node Kubernetes cluster in a virtual mac
 
 | Description | Command |
 | --- | --- |
-| start minikube and create cluster | minikube start |
-| start minikube and create cluster on vm | minikube start --vm-driver=virtualbox |
-| delete minikube | minikube delete |
-| get all worker nodes/pods/services/deploys | kubectl get nodes/pods/svc/deploy |
-| go inside the cluster | minikube ssh |
-| switch docker to work inside the cluster | eval $(minikube docker-env) |
-| activate the specified addon | minikube addons enable "name" |
-| apply the specified k8s setting in the file "file.yaml" | kubectl apply -f file.yaml |
-| remove smth | kubectl delete pod/deploy/svc "name" | 
-| see logs of pod| kubectl logs "podname" |
-| see pod/svc/deploy info | kubectl describe pod/svc/deploy "name" |
-| kill process "nginx" on "nginxpod" | kubectl exec "nginxpod" -- pkill nginx |
+| Start minikube and create cluster | minikube start |
+| Start minikube and create cluster on vm | minikube start --vm-driver=virtualbox |
+| Delete minikube | minikube delete |
+| Get all worker nodes/pods/services/deploys | kubectl get nodes/pods/svc/deploy |
+| Go inside the cluster | minikube ssh |
+| Switch docker to work inside the cluster | eval $(minikube docker-env) |
+| Activate the specified addon | minikube addons enable "name" |
+| Apply the specified k8s setting in the file "file.yaml" | kubectl apply -f file.yaml |
+| Remove smth | kubectl delete pod/deploy/svc "name" | 
+| See logs of pod| kubectl logs "podname" |
+| See pod/svc/deploy info | kubectl describe pod/svc/deploy "name" |
+| Kill process "nginx" on "nginxpod" | kubectl exec "nginxpod" -- pkill nginx |
 
 </br>
 
